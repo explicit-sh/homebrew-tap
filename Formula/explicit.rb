@@ -6,38 +6,27 @@ class Explicit < Formula
   license "MIT"
 
   def install
-    # Zig CLI binary
     bin.install "bin/explicit"
 
-    # OTP release (ERTS + compiled beams)
     libexec.install Dir["lib/*"]
 
-    # Server wrapper pointing to libexec
     (bin/"explicit-server").write <<~EOS
       #!/bin/bash
       export RELEASE_ROOT="#{libexec}"
       exec "#{libexec}/bin/explicit_server" "$@"
     EOS
     chmod 0755, bin/"explicit-server"
-
-    # Claude Code hook script
-    pkgshare.install "hooks"
   end
 
   def caveats
     <<~EOS
-      To integrate with Claude Code, add to .claude/settings.json:
+      Initialize a project with Claude Code hooks:
 
-      {
-        "hooks": {
-          "Stop": [{
-            "hooks": [{
-              "type": "command",
-              "command": "#{pkgshare}/hooks/explicit-stop.sh"
-            }]
-          }]
-        }
-      }
+        explicit init
+
+      Or manually add to .claude/settings.json:
+
+        "hooks": { "Stop": [{ "hooks": [{ "type": "command", "command": "explicit hooks claude stop" }] }] }
 
       Usage:
         explicit watch              # Start server
