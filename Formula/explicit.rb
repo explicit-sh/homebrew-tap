@@ -1,8 +1,8 @@
 class Explicit < Formula
-  desc "Real-time Elixir code analysis for Claude Code"
+  desc "Real-time Elixir code analysis + documentation for Claude Code"
   homepage "https://github.com/explicit-sh/explicit"
-  url "https://github.com/explicit-sh/explicit/releases/download/v0.1.0/explicit-v0.1.0-macos-arm64.tar.gz"
-  sha256 "c315f06e896d52d6987d13be9ce208c0b5e045ff5b787fbb95a9efa427fc955e"
+  url "https://github.com/explicit-sh/explicit/releases/download/v0.2.0/explicit-v0.2.0-macos-arm64.tar.gz"
+  sha256 "7b4375f9b2df2ed4e304545296255d89df67bd3d53ef642ba413eb7272fd64c5"
   license "MIT"
 
   depends_on "nono"
@@ -24,16 +24,16 @@ class Explicit < Formula
     <<~EOS
       Quick start:
 
-        explicit init              # Initialize in current project
-        explicit claude            # Launch Claude Code (sandboxed via nono)
-
-      The 'explicit claude' command runs Claude in dangerous mode but
-      sandboxed with nono — it can only access the current directory.
+        explicit init my_project   # Create a new project
+        cd my_project
+        explicit init              # Set up schema, hooks, skills
+        explicit claude            # Launch Claude Code (sandboxed)
 
       Usage:
-        explicit quality           # Quality gate report
+        explicit quality           # Quality gate (tests, docs, lint)
         explicit violations        # Code violations
         explicit docs lint         # Doc health check
+        explicit test              # Run mix test
         explicit stop              # Stop server
     EOS
   end
