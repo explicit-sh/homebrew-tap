@@ -5,6 +5,8 @@ class Explicit < Formula
   sha256 "c315f06e896d52d6987d13be9ce208c0b5e045ff5b787fbb95a9efa427fc955e"
   license "MIT"
 
+  depends_on "nono"
+
   def install
     bin.install "bin/explicit"
 
@@ -20,18 +22,19 @@ class Explicit < Formula
 
   def caveats
     <<~EOS
-      Initialize a project with Claude Code hooks:
+      Quick start:
 
-        explicit init
+        explicit init              # Initialize in current project
+        explicit claude            # Launch Claude Code (sandboxed via nono)
 
-      Or manually add to .claude/settings.json:
-
-        "hooks": { "Stop": [{ "hooks": [{ "type": "command", "command": "explicit hooks claude stop" }] }] }
+      The 'explicit claude' command runs Claude in dangerous mode but
+      sandboxed with nono — it can only access the current directory.
 
       Usage:
-        explicit watch              # Start server
-        explicit violations --json  # Show violations
-        explicit stop               # Stop server
+        explicit quality           # Quality gate report
+        explicit violations        # Code violations
+        explicit docs lint         # Doc health check
+        explicit stop              # Stop server
     EOS
   end
 
