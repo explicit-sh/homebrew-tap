@@ -1,8 +1,8 @@
 class Explicit < Formula
   desc "Real-time Elixir code analysis + documentation for Claude Code"
   homepage "https://github.com/explicit-sh/explicit"
-  url "https://github.com/explicit-sh/explicit/releases/download/v0.3.0/explicit-v0.3.0-macos-arm64.tar.gz"
-  sha256 "1bb59ccfc508af303f85b3b45e931c9557943ccbef606ebc0cf2ea3177b7a004"
+  url "https://github.com/explicit-sh/explicit/releases/download/v0.3.2/explicit-v0.3.2-macos-arm64.tar.gz"
+  sha256 "f1f88a82ca2ce26611fc6f9756e5a6b0651481c086290422d2d5d5d77ff86ea2"
   license "MIT"
 
   depends_on "nono"
