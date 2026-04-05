@@ -16,6 +16,8 @@ class Explicit < Formula
     (bin/"explicit-server").write <<~EOS
       #!/bin/bash
       export RELEASE_ROOT="#{libexec}"
+      export RELEASE_TMP="${TMPDIR:-/tmp}/explicit-server-tmp"
+      mkdir -p "$RELEASE_TMP"
       exec "#{libexec}/bin/explicit_server" "$@"
     EOS
     chmod 0755, bin/"explicit-server"
