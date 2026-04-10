@@ -1,9 +1,9 @@
 class Explicit < Formula
   desc "Real-time Elixir code analysis + documentation for Claude Code"
   homepage "https://github.com/explicit-sh/explicit"
-  version "0.3.8"
+  version "0.3.12"
   url "https://github.com/explicit-sh/explicit/releases/download/v#{version}/explicit-v#{version}-macos-arm64.tar.gz"
-  sha256 "4f409c8d3e845d846cb7c771f8142b23a97b1418dc243c4a3108521e837ab72d"
+  sha256 "53d5adc57c8776b0321626824b0bf146d3638098efb7aab9a5861ae4a4f824bd"
   license "MIT"
 
   depends_on "nono"
@@ -23,23 +23,7 @@ class Explicit < Formula
     chmod 0755, bin/"explicit-server"
   end
 
-  def caveats
-    <<~EOS
-      Quick start:
-
-        explicit init my_project   # Create project (one step)
-        cd my_project
-        explicit claude            # Launch Claude Code (sandboxed)
-
-      Usage:
-        explicit quality           # Quality gate (15 checks)
-        explicit validate          # Docs + code validation
-        explicit test              # Run mix test
-        explicit stop              # Stop server
-    EOS
-  end
-
   test do
-    assert_match "explicit", shell_output("#{bin}/explicit help 2>&1", 0)
+    assert_match "Usage:", shell_output("#{bin}/explicit help 2>&1", 0)
   end
 end
